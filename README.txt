@@ -1,0 +1,1 @@
+This is simple React app. It pulls the avatar and the name of the given user based on user input and displays them.
