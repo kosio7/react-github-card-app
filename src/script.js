@@ -8,7 +8,6 @@ class Card extends React.Component {
   }
 
   componentDidMount() {
-    let status = '';
     $.get("https://api.github.com/users/" + this.props.login, (data) => {
       this.setState(data);
       if (this.state.name !== null) {
@@ -19,7 +18,6 @@ class Card extends React.Component {
         toastr.warning('This organization has no name record.');
       }
     }).fail(() => {
-      console.log('EPIC FAIL');
       toastr.error('User/organization ' + this.props.login + ' not found!');
     });
   }
@@ -73,7 +71,9 @@ class Main extends React.Component {
 	  // TODO: Resolve how to prevent non existent user to be added as an empty line.
     if (loginToAdd.length > 0) {
       this.setState({logins: this.state.logins.concat(loginToAdd)});
-      setTimeout(() => {window.scrollTo(0, document.body.scrollHeight);}, 500);
+      setTimeout(() => {
+        window.scrollTo(0, document.body.scrollHeight);
+      }, 500);
     }
   }
 
