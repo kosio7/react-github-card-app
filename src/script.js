@@ -69,8 +69,7 @@ class Main extends React.Component {
 
   addCard(loginToAdd) {
 	  // TODO: Resolve how to prevent non existent user to be added as an empty line.
-    if (loginToAdd.length > 0) {
-      console.log(this.state.name);
+    if (loginToAdd.length > 0) {      
       this.setState({logins: this.state.logins.concat(loginToAdd)});
       setTimeout(() => {
         window.scrollTo(0, document.body.scrollHeight);
