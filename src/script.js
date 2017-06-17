@@ -10,9 +10,9 @@ class Card extends React.Component {
   componentDidMount() {
     $.get("https://api.github.com/users/" + this.props.login, (data) => {
       this.setState(data);
-      if (this.state.name !== null) {
+      if (this.state.name !== null && this.state.name !== 'UNNAMED USER') {
         toastr.success('Added' + ' ' + this.state.name);
-      } else if (this.state.name === null && this.state.type === 'User') {
+      } else if (this.state.name === null || this.state.name === 'UNNAMED USER' && this.state.type === 'User') {
         toastr.warning('This user has no name record.');
       } else if (this.state.name === null && this.state.type === 'Organization') {
         toastr.warning('This organization has no name record.');
@@ -70,6 +70,7 @@ class Main extends React.Component {
   addCard(loginToAdd) {
 	  // TODO: Resolve how to prevent non existent user to be added as an empty line.
     if (loginToAdd.length > 0) {
+      console.log(this.state.name);
       this.setState({logins: this.state.logins.concat(loginToAdd)});
       setTimeout(() => {
         window.scrollTo(0, document.body.scrollHeight);
